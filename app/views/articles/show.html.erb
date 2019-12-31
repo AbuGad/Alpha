@@ -3,3 +3,13 @@
 <p> Title: <%= @article.title %> </p>
 
 <p> Description: <%= @article.description %> </p>
+
+<%= link_to 'Edit', edit_article_path(params[:id]) %>
+
+<br></br>
+
+<%= link_to 'Back to list', articles_path %>
+
+<br></br>
+
+<td> <%= link_to 'delete' , article_path(@article), method: :delete, date: {confirm: 'confirm to delete'} %></td>
