@@ -1,7 +1,9 @@
-<h1>Edit article</h1>
+<h1 class="center">Edit article</h1>
 
 <%= render 'form' %>
 
 <br></br>
 
-<td> <%= link_to 'delete' , article_path(@article), method: :delete, date: {confirm: 'confirm to delete'} %></td>
+	<td> 
+		 { <%= link_to 'Delete This Article' , article_path(@article), method: :delete, data: {confirm: 'confirm to delete'} %>
+	</td>}
