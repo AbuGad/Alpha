@@ -6,10 +6,8 @@
 
 <%= link_to 'Edit', edit_article_path(params[:id]) %>
 
-<br></br>
+| <%= link_to 'Back to list', articles_path %>
 
-<%= link_to 'Back to list', articles_path %>
-
-<br></br>
-
-<td> <%= link_to 'delete', article_path(@article), method: :delete, data: {confirm: 'confirm to delete'} %></td>
+<td>  | <%= link_to 'delete', article_path(@article), method: :delete, data: {confirm: 'confirm to delete'} %>
+	
+</td>
