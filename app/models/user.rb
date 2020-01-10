@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
 	 			presence: true, length: {minimum:3 , maximum: 300}
 	validates :email, uniqueness: { case_sensitive: false}, presence: true ,
 				 length: {minimun:2 , maximum:300}, 
-				 :email_format => {:message => " is not looking good"} 			
+				 :email_format => {:message => " is not looking good"} 
+has_secure_password			
 end
