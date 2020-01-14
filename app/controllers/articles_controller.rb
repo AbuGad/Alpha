@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
-
+    
     before_action :set_article, only: [:edit, :update, :show, :destroy ]
-    before_action :require_user, except: [:index, :show]
+    before_action :require_user, except: [:new]
     before_action :require_same_user, only: [:edit , :destroy, :update]
 
 	def new
@@ -21,7 +21,11 @@ class ArticlesController < ApplicationController
 
     def show
     	@article = Article.find(params[:id])
-    	
+        #if @article = Article.find(params[:id])
+        #flash[:danger] = 'you have to login first'
+        #redirect_to root_path
+        #else
+        #end
     end
 
     def edit

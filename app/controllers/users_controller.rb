@@ -1,5 +1,6 @@
 class UsersController<ApplicationController
 
+	before_action :require_user, except: [:new]
 	before_action :set_user, only:[:edit,:update,:show]
     before_action :require_same_user, only: [:edit, :update, :destroy]
    	before_action :require_admin, only: [:destroy]
@@ -34,7 +35,13 @@ end
 
 def show
 	@user_articles = @user.articles.paginate(page: params[:page], per_page: 3)
-	
+	@user = User.find(params[:id])
+	#if  current_user = @user = User.find(params[:id])
+	#else
+        #flash[:danger] = 'you have to login first'
+        #redirect_to root_path
+    #end
+
 end
 
 def destroy
@@ -46,14 +53,13 @@ def destroy
 end
 
 def index
-	@users = User.paginate(page: params[:page], per_page: 5)
-	
+	@users = User.paginate(page: params[:page], per_page: 3)
 end
 
 	private
 
 	def user_params
-		params.require(:user).permit(:username, :email, :password)
+		params.require(:user).permit(:username, :email, :password, )
 	end
 
 	def set_user
@@ -72,6 +78,14 @@ end
 		if current_user != @user and !current_user.admin?
 			flash[:danger] = "You Can Only Edite Your Account"
 			redirect_to root_path
-	end
+		end
 	end	
+
+	def require_admin
+		if logged_in? and !current_user.admin?
+			flash[:danger] = 'only admin can do this action'
+			redirect_to root_path
+		end
+		
+	end
 end
